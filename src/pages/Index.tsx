@@ -4,9 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import AudioPlayer from '@/components/AudioPlayer';
 
 const Index = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const programs = [
     {
@@ -138,39 +138,22 @@ const Index = () => {
             <p className="text-xl text-muted-foreground mb-8">
               Лучшая музыка 24/7 • Хиты всех времен • Онлайн-вещание
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Button
-                size="lg"
-                className="gap-2 gradient-primary hover:opacity-90 transition-opacity text-lg px-8 py-6"
-                onClick={() => setIsPlaying(!isPlaying)}
-              >
-                <Icon name={isPlaying ? 'Pause' : 'Play'} size={24} />
-                {isPlaying ? 'Остановить эфир' : 'Слушать эфир'}
-              </Button>
+            <div className="mb-8">
+              <AudioPlayer 
+                streamUrl="https://stream.zeno.fm/f3wvbbqmdg8uv"
+                currentTrack={{ artist: 'The Weeknd', title: 'Blinding Lights' }}
+              />
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" variant="outline" className="gap-2 text-lg px-8 py-6">
                 <Icon name="Radio" size={24} />
                 Расписание
               </Button>
+              <Button size="lg" variant="outline" className="gap-2 text-lg px-8 py-6">
+                <Icon name="List" size={24} />
+                Программы
+              </Button>
             </div>
-            <Card className="bg-card/50 backdrop-blur-sm border-primary/20">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-lg gradient-secondary flex items-center justify-center text-3xl animate-wave">
-                      🎵
-                    </div>
-                    <div className="text-left">
-                      <p className="text-sm text-muted-foreground">Сейчас играет</p>
-                      <p className="text-xl font-bold">The Weeknd - Blinding Lights</p>
-                      <p className="text-sm text-muted-foreground">Хиты Дня • 09:30</p>
-                    </div>
-                  </div>
-                  <Button size="icon" variant="ghost">
-                    <Icon name="Heart" size={24} />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
